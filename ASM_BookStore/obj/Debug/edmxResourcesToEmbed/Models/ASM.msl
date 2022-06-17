@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ASMModelStoreContainer" CdmEntityContainer="ASMEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="ASMModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="account_ID" ColumnName="account_ID" />
+          <ScalarProperty Name="account_username" ColumnName="account_username" />
+          <ScalarProperty Name="account_password" ColumnName="account_password" />
+          <ScalarProperty Name="account_status" ColumnName="account_status" />
+          <ScalarProperty Name="account_role" ColumnName="account_role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="ASMModel.Author">
+        <MappingFragment StoreEntitySet="Author">
+          <ScalarProperty Name="author_ID" ColumnName="author_ID" />
+          <ScalarProperty Name="author_name" ColumnName="author_name" />
+          <ScalarProperty Name="author_phone" ColumnName="author_phone" />
+          <ScalarProperty Name="author_email" ColumnName="author_email" />
+          <ScalarProperty Name="author_status" ColumnName="author_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="ASMModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="book_ID" ColumnName="book_ID" />
+          <ScalarProperty Name="book_title" ColumnName="book_title" />
+          <ScalarProperty Name="book_summary" ColumnName="book_summary" />
+          <ScalarProperty Name="book_image" ColumnName="book_image" />
+          <ScalarProperty Name="book_price" ColumnName="book_price" />
+          <ScalarProperty Name="book_quantityInStorage" ColumnName="book_quantityInStorage" />
+          <ScalarProperty Name="book_numOfPages" ColumnName="book_numOfPages" />
+          <ScalarProperty Name="book_status" ColumnName="book_status" />
+          <ScalarProperty Name="book_author" ColumnName="book_author" />
+          <ScalarProperty Name="book_publisher" ColumnName="book_publisher" />
+          <ScalarProperty Name="book_rating" ColumnName="book_rating" />
+          <ScalarProperty Name="book_type" ColumnName="book_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="ASMModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="customer_ID" ColumnName="customer_ID" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_gender" ColumnName="customer_gender" />
+          <ScalarProperty Name="customer_birthday" ColumnName="customer_birthday" />
+          <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+          <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+          <ScalarProperty Name="customer_phone" ColumnName="customer_phone" />
+          <ScalarProperty Name="customer_status" ColumnName="customer_status" />
+          <ScalarProperty Name="customer_account" ColumnName="customer_account" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="ASMModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+          <ScalarProperty Name="order_total" ColumnName="order_total" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="order_staff" ColumnName="order_staff" />
+          <ScalarProperty Name="order_customer" ColumnName="order_customer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderInfoes">
+      <EntityTypeMapping TypeName="ASMModel.OrderInfo">
+        <MappingFragment StoreEntitySet="OrderInfo">
+          <ScalarProperty Name="orderInfo_book" ColumnName="orderInfo_book" />
+          <ScalarProperty Name="orderInfo_order" ColumnName="orderInfo_order" />
+          <ScalarProperty Name="orderInfo_quantity" ColumnName="orderInfo_quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publishers">
+      <EntityTypeMapping TypeName="ASMModel.Publisher">
+        <MappingFragment StoreEntitySet="Publisher">
+          <ScalarProperty Name="publisher_ID" ColumnName="publisher_ID" />
+          <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
+          <ScalarProperty Name="publisher_phone" ColumnName="publisher_phone" />
+          <ScalarProperty Name="publisher_address" ColumnName="publisher_address" />
+          <ScalarProperty Name="publisher_email" ColumnName="publisher_email" />
+          <ScalarProperty Name="publisher_status" ColumnName="publisher_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="ASMModel.Rating">
+        <MappingFragment StoreEntitySet="Rating">
+          <ScalarProperty Name="rating_ID" ColumnName="rating_ID" />
+          <ScalarProperty Name="rating_type" ColumnName="rating_type" />
+          <ScalarProperty Name="rating_status" ColumnName="rating_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="ASMModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="role_ID" ColumnName="role_ID" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+          <ScalarProperty Name="role_status" ColumnName="role_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="ASMModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="staff_ID" ColumnName="staff_ID" />
+          <ScalarProperty Name="staff_name" ColumnName="staff_name" />
+          <ScalarProperty Name="staff_gender" ColumnName="staff_gender" />
+          <ScalarProperty Name="staff_birthday" ColumnName="staff_birthday" />
+          <ScalarProperty Name="staff_address" ColumnName="staff_address" />
+          <ScalarProperty Name="staff_email" ColumnName="staff_email" />
+          <ScalarProperty Name="staff_phone" ColumnName="staff_phone" />
+          <ScalarProperty Name="staff_status" ColumnName="staff_status" />
+          <ScalarProperty Name="staff_account" ColumnName="staff_account" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types">
+      <EntityTypeMapping TypeName="ASMModel.Type">
+        <MappingFragment StoreEntitySet="Type">
+          <ScalarProperty Name="type_ID" ColumnName="type_ID" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="type_status" ColumnName="type_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

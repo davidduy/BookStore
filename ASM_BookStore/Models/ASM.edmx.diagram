@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9204aba1f88146508bf92de87109dd4b" Name="Diagram1">
+        <EntityTypeShape EntityType="ASMModel.Account" Width="1.5" PointX="1.5" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMModel.Author" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMModel.Book" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMModel.Customer" Width="1.5" PointX="0.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMModel.Order" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMModel.OrderInfo" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMModel.Publisher" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMModel.Rating" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMModel.Role" Width="1.5" PointX="1.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMModel.Staff" Width="1.5" PointX="0.75" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASMModel.Type" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <AssociationConnector Association="ASMModel.FKAccount826313" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMModel.FKCustomer379927" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMModel.FKStaff664554" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMModel.FKBook218202" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMModel.FKBook277085" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMModel.FKBook439307" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMModel.FKBook811466" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMModel.FKOrderInfo500949" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMModel.FKOrder528947" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMModel.FKOrder758564" ManuallyRouted="false" />
+        <AssociationConnector Association="ASMModel.FKOrderInfo524138" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

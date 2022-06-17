@@ -1,0 +1,414 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@model ASM_BookStore.Models.Book
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aroma Shop - Product Details</title>
+    <link rel="icon" href="~/img/Fevicon.png" type="image/png">
+    <link rel="stylesheet" href="~/vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="~/vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="~/vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="~/vendors/linericon/style.css">
+    <link rel="stylesheet" href="~/vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/vendors/nice-select/nice-select.css">
+    <link rel="stylesheet" href="~/vendors/nouislider/nouislider.min.css">
+
+    <link rel="stylesheet" href="~/css/style.css">
+    <style>
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius:5px;
+        }
+
+            .active, .accordion:hover {
+                background-color: #ccc;
+            }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <!--================ Start Header Menu Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <a class="navbar-brand" href="@Url.Action("Index","Home")"><img class="w-50 h-50" src="~/img/newlogo.png" alt="Icon BookStore"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                            <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="nav-item active submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" style="background-color: #fff;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">@Html.ActionLink("Product Category", "Category", "Shop", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="nav-item">@Html.ActionLink("Orders Information", "Confirmation", "Shop", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="nav-item">@Html.ActionLink("Shopping Cart", "Cart", "Shop", new { area = "" }, new { @class = "nav-link" })</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        </ul>
+                        <ul class="nav-shop">
+                            <li class="nav-item"><button><i class="ti-search"></i></button></li>
+                            <li class="nav-item"><button type="button" onclick="location.href = '@Url.Action("Cart", "Shop")'"><i class="ti-shopping-cart"></i><span class="nav-shop__circle">@Session["OrderQuality"]</span></button> </li>
+                            @if (Session["User"] == null)
+                            {
+                                <li class="nav-item">@Html.ActionLink("Login", "Login", "Page", new { area = "" }, new { @class = "button button - header" })</li>
+                            }
+                            else
+                            {
+                                <li class="nav-item"><button type="button" style="margin-left:20px;" onclick="location.href = '@Url.Action("Cart","Shop")'"><i class="ti-shopping-cart"></i><span class="nav-shop__circle">@Session["OrderQuality"]</span></button> </li>
+                                <li class="nav-item">@Html.ActionLink((Session["Customer"] as ASM_BookStore.Models.Customer).customer_name, "ChangeInformation", "Page", new { area = "" }, new { @class = "button button - header" })</li>
+                                <li class="nav-item" style="margin-left: 10px; border-radius:50px;">@Html.ActionLink("Log out", "Logout", "Page", new { area = "" }, new { @class = "btn-danger p-3 pl-4 pr-4 rounded " })</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="blog">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>Shop Single</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item" >@Html.ActionLink("Home", "Index", "Home", new { area = "" })</li>
+                            <li class="breadcrumb-item active" style="        background: #f1f6f7;" aria-current="page">Shop Single</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+    <!--================Single Product Area =================-->
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row s_product_inner">
+                <div class="col-lg-6">
+                    <div class="single-prd-item">
+                        @{
+                            <img src="~/img/@Html.DisplayFor(Model => Model.book_image)" sizes="500px">
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="s_product_text">
+                        <h3>@Html.DisplayFor(Model => Model.book_title)</h3>
+                        <h2>$@Html.DisplayFor(Model => Model.book_price)</h2>
+
+                        @{
+                            int quality = Convert.ToInt32(Model.book_quantityInStorage);
+                            if (quality > 0)
+                            {
+                                <ul class="list">
+                                    <li><a href="#"><span>Author</span> : @Html.DisplayFor(Model => Model.book_author)</a></li>
+                                    <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                                    <li><a href="#"><span>Number Of Pages</span> : @Html.DisplayFor(Model => Model.book_numOfPages)</a></li>
+                                </ul>
+                                <button class="accordion">Summary</button>
+                                <div class="panel">
+                                    <p>@Html.DisplayFor(Model => Model.book_summary)</p>
+                                </div>
+                                <div class="product_count">
+                                    <label for="qty">Quantity:</label>
+                                    <input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                                    <a class="button primary-btn" href="@Url.Action("AddCart", "Shop", new {idBook = Model.book_ID })" style="margin-left: 10px;">Add to Cart</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <ul class="list">
+                                    <li><a href="#"><span>Author</span> : @Html.DisplayFor(Model => Model.book_author)</a></li>
+                                    <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                                    <li><a href="#"><span>Pages</span> : @Html.DisplayFor(Model => Model.book_numOfPages)</a></li>
+                                </ul>
+                                <button class="accordion">Summary</button>
+                                <div class="panel">
+                                    <p>@Html.DisplayFor(Model => Model.book_summary)</p>
+                                </div>
+                                <div class="product_count">
+                                    <label for="qty">Quantity:</label>
+                                    <input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                                    <a class="button primary-btn" href="#" style="margin-left: 10px;" disabled>Add to Cart</a>
+                                </div>
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+    <!--================End Single Product Area =================-->
+    <!--================Product Description Area =================-->
+    <section class="product_description_area">
+        <div class="container">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <p>
+                        Beryl Cook is one of Britain’s most talented and amusing artists .Beryl’s pictures feature women of all shapes and sizes enjoying themselves .Born between the two world wars, Beryl Cook eventually left Kendrick School in Reading at
+                        the age of 15, where she went to secretarial school and then into an insurance office. After moving to London and then Hampton, she eventually married her next door neighbour from Reading, John Cook. He was an officer in the Merchant
+                        Navy and after he left the sea in 1956, they bought a pub for a year before John took a job in Southern Rhodesia with a motor company. Beryl bought their young son a box of watercolours, and when showing him how to use it, she
+                        decided that she herself quite enjoyed painting. John subsequently bought her a child’s painting set for her birthday and it was with this that she produced her first significant work, a half-length portrait of a dark-skinned lady
+                        with a vacant expression and large drooping breasts. It was aptly named ‘Hangover’ by Beryl’s husband and
+                    </p>
+                    <p>
+                        It is often frustrating to attempt to plan meals that are designed for one. Despite this fact, we are seeing more and more recipe books and Internet websites that are dedicated to the act of cooking for one. Divorce and the death of
+                        spouses or grown children leaving for college are all reasons that someone accustomed to cooking for more than one would suddenly need to learn how to adjust all the cooking practices utilized before into a streamlined plan of
+                        cooking that is more efficient for one person creating less
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Product Description Area =================-->
+    <!--================ Start related Product area =================-->
+    <section class="related-product-area section-margin--small mt-0">
+        <div class="container">
+            <div class="section-intro pb-60px">
+                <p>Popular Item in the market</p>
+                <h2>Top <span class="section-intro__style">Product</span></h2>
+            </div>
+            <div class="row mt-30">
+                <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                    <div class="single-search-product-wrapper">
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-1.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-2.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-3.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                    <div class="single-search-product-wrapper">
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-4.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-5.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-6.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                    <div class="single-search-product-wrapper">
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-7.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-8.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-9.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                    <div class="single-search-product-wrapper">
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-1.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-2.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="img/product/product-sm-3.png" alt=""></a>
+                            <div class="desc">
+                                <a href="#" class="title">Gray Coffee Cup</a>
+                                <div class="price">$170.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ end related Product area =================-->
+    <!--================ Start footer Area  =================-->
+    <footer>
+        <div class="footer-area footer-only">
+            <div class="container">
+                <div class="row section_gap">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets ">
+                            <h4 class="footer_title large_title">Our Mission</h4>
+                            <p>
+                                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved us lan Gathering thing us land years living.
+                            </p>
+                            <p>
+                                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
+                            </p>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Quick Links</h4>
+                            <ul class="list">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Shop</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Product</a></li>
+                                <li><a href="#">Brand</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget instafeed">
+                            <h4 class="footer_title">Gallery</h4>
+                            <ul class="list instafeed d-flex flex-wrap">
+                                <li><img src="img/gallery/r1.jpg" alt=""></li>
+                                <li><img src="img/gallery/r2.jpg" alt=""></li>
+                                <li><img src="img/gallery/r3.jpg" alt=""></li>
+                                <li><img src="img/gallery/r5.jpg" alt=""></li>
+                                <li><img src="img/gallery/r7.jpg" alt=""></li>
+                                <li><img src="img/gallery/r8.jpg" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Contact Us</h4>
+                            <div class="ml-40">
+                                <p class="sm-head">
+                                    <span class="fa fa-location-arrow"></span> Head Office
+                                </p>
+                                <p>123, Main Street, Your City</p>
+
+                                <p class="sm-head">
+                                    <span class="fa fa-phone"></span> Phone Number
+                                </p>
+                                <p>
+                                    +123 456 7890 <br> +123 456 7890
+                                </p>
+
+                                <p class="sm-head">
+                                    <span class="fa fa-envelope"></span> Email
+                                </p>
+                                <p>
+                                    free@infoexample.com <br> www.infoexample.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--================ End footer Area  =================-->
+
+
+
+    <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="vendors/skrollr.min.js"></script>
+    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
+    <script src="vendors/jquery.ajaxchimp.min.js"></script>
+    <script src="vendors/mail-script.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
